@@ -3,8 +3,10 @@ FROM alpine:3.11
 RUN apk update && apk add -u nginx php7-fpm curl wget vim python-dev py-pip && \
     mkdir -p /run/nginx
 ADD default.conf /etc/nginx/conf.d/
+ADD 443.conf /etc/nginx/conf.d/
 ADD nginx.conf /etc/nginx/
 ADD php-fpm.conf /etc/php7/php-fpm.conf
+ADD cert /cert
 COPY . /
 RUN chmod -R 777 /var
 RUN chmod -R 777 /etc/nginx/conf.d/
